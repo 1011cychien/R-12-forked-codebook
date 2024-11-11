@@ -191,8 +191,8 @@
       path: QuadraticResidue.cpp
       verified: 721489798592861d
     - name: FWT
-      path: FWT.cpp
-      verified: 9d2fc74
+      path: Modint/FWT.cpp
+      verified:
     - name: Packed FFT
       path: PackedFFT.cpp
       verified: 76e52a1
@@ -200,11 +200,17 @@
       path: GarnerCRT.cpp
       verified: 72c5be6
     - name: NTT / FFT
-      path: NTT.cpp
-      verified: 9d2fc74
+      path: Modint/NTT.cpp
+      verified:
     - name: Formal Power Series
-      path: FPS.cpp
-      verified: be320a4
+      path: Modint/FPS.cpp
+      verified:
+    # - name: NTT / FFT
+    #   path: NTT.cpp
+    #   verified: 9d2fc74
+    # - name: Formal Power Series
+    #   path: FPS.cpp
+    #   verified: be320a4
     - name: Partition Number
       path: PartitionNumber.cpp
       verified: 5bffa18

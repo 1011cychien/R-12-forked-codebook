@@ -5,6 +5,7 @@ import hashlib
 import subprocess
 from typing import List, Dict, Any, IO
 from os import path
+import re
 import yaml
 from git import Repo
 
@@ -20,6 +21,14 @@ def strip_whitespaces(raw_s: str) -> str:
     """works as `tr -d '[:space:]'`"""
     whitespaces = [" ", "\n", "\r", "\t", "\v"]
     return "".join(char for char in raw_s if char not in whitespaces)
+
+def cpp_hash(raw_s: str) -> str:
+    preprocessed = subprocess.check_output(
+            [ "cpp", "-dD", "-P", "-fpreprocessed" ],
+            input=raw_s.encode()
+            ).decode("utf8")
+    stripped = strip_whitespaces(preprocessed)
+    return md5hex(stripped)[:6]
 
 
 def escape_latex(raw_s: str) -> str:
@@ -83,35 +92,27 @@ def gen_tex(sections: List[Dict[str, Any]], out: IO) -> None:
 
                 hashes = []
                 for part, firstline, lastline in parts:
-                    preprocessed = subprocess.check_output(
-                        [
-                            "cpp",
-                            "-dD",
-                            "-P",
-                            "-fpreprocessed",
-                        ],
-                        input=part.encode()
-                    ).decode("utf8")
+                    hashes.append(cpp_hash(part))
 
-                    stripped = strip_whitespaces(preprocessed)
-                    cpp_hash = md5hex(stripped)[:6]
-                    hashes.append(cpp_hash)
+                with open(path.join(prefix, content["path"]), "r") as f:
+                    whole_file = f.read()
+                    whole_cpp_hash = cpp_hash(whole_file)
 
-                preprocessed = subprocess.check_output(
-                    [
-                        "cpp",
-                        "-dD",
-                        "-P",
-                        "-fpreprocessed",
-                        path.join(prefix, content["path"]),
-                    ]
-                ).decode("utf8")
-                stripped = strip_whitespaces(preprocessed)
-                whole_cpp_hash = md5hex(stripped)[:6]
+                    regex = r'^.*\(\*@(\\.*?)@\*\).*$(?:.|\r|\n)*?^.*\(\*@(\1End)@\*\).*$'
+                    flags = re.MULTILINE
+                    for match in re.finditer(regex, whole_file, flags = flags):
+                        token_start = match.group(1)
+                        token_end = match.group(2)
+                        assert token_end == token_start + 'End'
+                        block_hash = cpp_hash(match.group())
+                        print(token_start, token_end)
+                        # TODO newcommand or renewcommand
+                        out.write("\\newcommand{%s}{\\small\\textit{%s}}\n" % (token_start, block_hash))
+                        out.write("\\newcommand{%s}{\\small\\textit{%s}}\n" % (token_end, "hash end."))
 
                 hash_str = "{ \\small [%s]}" % whole_cpp_hash
                 if len(hashes) > 1:
-                    hash_str += "{\\small \,- %s}" % '/'.join(hashes)
+                    hash_str += "{\\small \\,- %s}" % '/'.join(hashes)
 
                 out.write(
                     "\\IncludeCode[][%s]{%s}{%s}\n"
