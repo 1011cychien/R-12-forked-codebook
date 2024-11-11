@@ -20,23 +20,23 @@ template <typename U, typename V> struct min25 {
       }
     return S(n);
   } // F_prime: \sum _ {p is prime, p <= n} f(p)
-  V F_comp(auto &&g) {
-    for (lld i : quo) R(i) = V(S(i));
+  V F_comp(auto &&g, auto &&h) {
+    for (lld i : quo) R(i) = h(S(i));
     for (lld p : sv.primes | views::reverse)
       for (lld i : quo) {
         if (p * p > i) break;
         lld prod = p;
         for (int c = 1; prod * p <= i; ++c, prod *= p) {
-          R(i) += g(p, c) * (R(i / prod) - V(Spre[p]));
+          R(i) += g(p, c) * (R(i / prod) - h(Spre[p]));
           R(i) += g(p, c + 1);
         }
       }
     return R(n);
   } // F_comp: \sum _ {2 <= i <= n} g(i)
 }; // O(n^{3/4} / log n)
-/* U, V 都是環，記 h: U -> V 代表 U 轉型成 V 的函數。
-要求 h(x + y) = h(x) + h(y)；f: lld -> U 是完全積性；
-g 是積性函數且 h(f(p)) = g(p) 對於質數 p。
+/* U, V 都是環，要求 f: lld -> U 是完全積性；
+g 是積性函數且 h(f(p)) = g(p) 對於質數 p；
+h(x + y) = h(x) + h(y)。
 呼叫 F_comp 前需要先呼叫 F_prime 得到 S(i)。
 S(i), R(i) 是 F_prime 和 F_comp 在 n/k 點的值。
 F(i) = \sum _ {j <= i} f(j) 和 f(i) 需要快速求值。
