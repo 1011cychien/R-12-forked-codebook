@@ -51,12 +51,12 @@
   prefix: ../codes/Graph/
   doc: Graph.md
   content:
-    - name: SCC
-      path: SCC.cpp
-      verified: 4e30c3b
-    - name: 2-SAT
-      path: 2SAT.cpp
-      verified: e50acf1
+    - name: SCC (1RZck)
+      path: 1rzck/SCC.cpp
+      verified:
+    - name: 2-SAT (1RZck)
+      path: 1rzck/2SAT.cpp
+      verified:
     - name: BCC
       path: BCC.cpp
       verified: d0dcb10
@@ -81,9 +81,12 @@
     - name: Centroid Decomp.
       path: CenDec.cpp
       verified:
-    - name: Lowbit Decomp.
-      path: LowbitDecomposition.cpp
-      verified: 8a7e002
+    # - name: Lowbit Decomp.
+    #   path: LowbitDecomposition.cpp
+    #   verified: 8a7e002
+    - name: Heavy-Light Decomp.
+      path: 1rzck/HLD.cpp
+      verified:
     - name: Virtual Tree
       path: VirtualTree.cpp
       verified: 9d2fc74
@@ -125,9 +128,9 @@
     - name: Dinic
       path: Dinic.cpp
       verified: a37bcb9
-    - name: HLPP
-      path: hlpp.cpp
-      verified: a7b3f12
+    # - name: HLPP
+    #   path: hlpp.cpp
+    #   verified: a7b3f12
     - name: Global Min-Cut
       path: SW.cpp
       verified: 5b1b960
@@ -241,9 +244,9 @@
     - name: Adaptive Simpson
       path: AdaptiveSimpson.cpp
       verified: c23f0fc
-    - name: Poly Roots
-      path: PolyRoots.cpp
-      verified:
+    # - name: Poly Roots
+    #   path: PolyRoots.cpp
+    #   verified:
     - name: Golden Ratio Search
       path: GoldenSearch.cpp
       verified: 72c5be6
@@ -342,9 +345,9 @@
     - name: Build Voronoi
       path: Voronoi.cpp
       verified: 5d49aa0
-    - name: kd Tree (Nearest Point)
-      path: KDTree.cpp
-      verified:
+    # - name: kd Tree (Nearest Point)
+    #   path: KDTree.cpp
+    #   verified:
     # - name: kd Closest Pair (3D ver.)
     #   path: 3d/ClosestPair.cpp
     #   verified:
