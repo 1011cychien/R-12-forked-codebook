@@ -169,7 +169,7 @@ Get minimum covering circle in $O(N)$ expected time.
 Also gives the circumcenter formula.
 ### Test Status
 Passed TIOJ 1093, luogu P1742
-~~[TIOJ](https://tioj.ck.tp.edu.tw/submissions/370344)~~
+[~~TIOJ~~](https://tioj.ck.tp.edu.tw/submissions/370344)
 [luogu](https://www.luogu.com.cn/record/148473379)
 
 ## Circle Union
