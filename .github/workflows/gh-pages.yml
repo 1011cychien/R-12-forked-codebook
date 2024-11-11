@@ -38,7 +38,7 @@ jobs:
           clean: true
       - name: move back html
         run: mv /tmp/index.html index.html
-      - uses: stefanzweifel/git-auto-commit-action@v4
+      - uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: auto build - ${{ github.sha }}
           file_pattern: index.html
