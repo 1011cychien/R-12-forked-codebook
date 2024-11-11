@@ -21,7 +21,7 @@ jobs:
   all:
     name: build and commit
     runs-on: ubuntu-latest
-    container: ghcr.io/1011cychien/R-12-forked-codebook/builder:master
+    container: ghcr.io/1011cychien/r-12-forked-codebook/builder:master
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
