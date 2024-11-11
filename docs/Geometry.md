@@ -44,7 +44,7 @@ Minkowski sum of two convex hulls.
 ### Test Status
 Used in some contest. TODO.
 Passed codeforces [87 E](https://codeforces.com/contest/87/submission/248359853).
-~~Passed [non-flying weather](https://acm.timus.ru/problem.aspx?space=1&num=1894).~~
+Passed [~~non-flying weather~~](https://acm.timus.ru/problem.aspx?space=1&num=1894).
 
 ## Segment Intersection
 ### Description
