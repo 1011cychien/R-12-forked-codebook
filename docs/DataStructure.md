@@ -45,9 +45,21 @@ Given a set of integers:
 - kth problem [1st Hunger Games S](https://codeforces.com/group/qcIqFPYhVr/contest/203881/problem/S)
 - maybe need a combined problem?
 
+## <atcoder/lazysegtree>
+### Description
+Iterative segment tree with lazy tag.
+### Test status
+Passed [range_affine_range_sum](https://judge.yosupo.jp/submission/247177).
+
 ## Binary Search on Segtree
 ### Description
 Binary search on ZKW segtree.
 `sz` should be power of $2$ (be careful of other parts!).
 ### Test Status
 Passed [Quick Sort](https://codeforces.com/gym/104076/problem/G)
+
+## Interval Container
+### Description
+Maintains intervals. Copied from KACTL.
+### Test Status
+No.
